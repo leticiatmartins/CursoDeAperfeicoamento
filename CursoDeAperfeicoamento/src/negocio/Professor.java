@@ -10,6 +10,12 @@ public class Professor {
 		valorHoraAula = v;
 		tel = t;
 	}
+	
+		public String toString() {
+		return "Nome d@ professor@: " + nome + ", valor da hora/aula: R$" + valorHoraAula;
+	}
+
+
 
 	public String getNome() {
 		return nome;

@@ -1,6 +1,6 @@
 package negocio;
 
-import java.util.Date;
+import java.util.*;
 
 public class Aluno {
 	private String nome;
@@ -10,11 +10,17 @@ public class Aluno {
 	private String endereco;
 	private Telefone numTel;
 	
-	public Aluno(String n, Date d, String e) {
+	public Aluno(String n, String e) {
 		nome = n;
-		dataNasc = d;
 		endereco = e;
 	}
+	
+
+	public String toString() {	
+		return "Nome do aluno: " + nome;
+	}
+
+
 
 	public String getNome() {
 		return nome;

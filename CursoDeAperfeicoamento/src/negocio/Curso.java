@@ -1,6 +1,6 @@
 package negocio;
 
-import java.util.Date;
+import java.util.*;
 
 public class Curso {
 	
@@ -12,21 +12,34 @@ public class Curso {
 	private int cargaHoraria;
 	private String conteudoProg;
 	private double valor;
-	private Aluno[] alunos;
-	private int numAlunos;
+	private Aluno[] alunos = new Aluno[40];
+	private int numAlunos = 0;
 	
-	public Curso(String n, String cont, double val) {
+	public Curso(String n, String cont, double val, int total) {
 		nome = n;
 		conteudoProg = cont;
 		valor = val;
+		numAlunos = total;
+	}
+	
+	public String toString() {
+		return "Nome do curso: " + nome + ", valor do Curso:" + valor;
 	}
 
-	public Aluno[] getAlunos() {
-		return alunos;
+	public Aluno[] getAlunosMatriculados() {
+		return this.alunos;
+	}
+	
+	public void setArrayAlunos(Aluno[] a) {
+		this.alunos = a;
 	}
 
-	public void setAlunos(Aluno[] alunos) {
-		this.alunos = alunos;
+	public Aluno getAluno(int i) {
+		return alunos[i];
+	}
+
+	public void setAluno(Aluno aluno, int i) {
+		this.alunos[i] = aluno;
 	}
 
 	public int getNumAlunos() {
@@ -102,6 +115,13 @@ public class Curso {
 		this.valor = valor;
 	}
 	
+	public String consultarAlunosMatriculados() {
+		String saida = "***** Lista de Alunos ***** \n" ;
+		for(int i = 0; i < numAlunos; i++) {
+			System.out.println(i);
+			saida = saida + "\n"+ alunos[i].toString();
+		}
+		return saida;
+	}
 	
-
 }
