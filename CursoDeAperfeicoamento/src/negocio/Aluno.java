@@ -2,13 +2,9 @@ package negocio;
 
 import java.util.*;
 
-public class Aluno {
-	private String nome;
-	private int numID;
-	private int CPF; 
+public class Aluno extends Pessoa { 
 	private Date dataNasc;
 	private String endereco;
-	private Telefone numTel;
 	
 	public Aluno(String n, String e) {
 		nome = n;

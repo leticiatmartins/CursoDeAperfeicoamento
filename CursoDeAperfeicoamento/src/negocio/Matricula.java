@@ -21,15 +21,10 @@ public class Matricula {
 
 	public void matricular() {
 		int qtd;
-		Aluno a = this.getAluno();
 		Curso c = this.getCurso();
 		qtd = c.getNumAlunos();
-		c.setAluno(a, qtd);
+		c.setAluno(this, qtd);
 		c.setNumAlunos(qtd+1);
-		
-		
-
-		
 	}
 
 

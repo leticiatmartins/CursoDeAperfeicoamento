@@ -11,8 +11,9 @@ public class Curso {
 	private int horaTermino;
 	private int cargaHoraria;
 	private String conteudoProg;
+	private Professor prof;
 	private double valor;
-	private Aluno[] alunos = new Aluno[40];
+	private Matricula[] alunosMatriculados = new Matricula[40];
 	private int numAlunos = 0;
 	
 	public Curso(String n, String cont, double val, int total) {
@@ -26,20 +27,20 @@ public class Curso {
 		return "Nome do curso: " + nome + ", valor do Curso:" + valor;
 	}
 
-	public Aluno[] getAlunosMatriculados() {
-		return this.alunos;
+	public Matricula[] getMatriculas() {
+		return this.alunosMatriculados;
 	}
 	
-	public void setArrayAlunos(Aluno[] a) {
-		this.alunos = a;
+	public void setArrayAlunosMatriculados(Matricula[] a) {
+		this.alunosMatriculados = a;
 	}
 
 	public Aluno getAluno(int i) {
-		return alunos[i];
+		return alunosMatriculados[i].getAluno();
 	}
 
-	public void setAluno(Aluno aluno, int i) {
-		this.alunos[i] = aluno;
+	public void setAluno(Matricula alunoMat, int i) {
+		this.alunosMatriculados[i] = alunoMat;
 	}
 
 	public int getNumAlunos() {
@@ -107,6 +108,14 @@ public class Curso {
 		this.conteudoProg = conetudoProg;
 	}
 
+	public Professor getProf() {
+		return prof;
+	}
+
+	public void setProf(Professor prof) {
+		this.prof = prof;
+	}
+	
 	public double getValor() {
 		return valor;
 	}
@@ -116,12 +125,11 @@ public class Curso {
 	}
 	
 	public String consultarAlunosMatriculados() {
-		String saida = "***** Lista de Alunos ***** \n" ;
+		String saida = "***** Lista de Alunos Matriculados ***** \n" ;
 		for(int i = 0; i < numAlunos; i++) {
 			System.out.println(i);
-			saida = saida + "\n"+ alunos[i].toString();
+			saida = saida + "\n"+ alunosMatriculados[i].getAluno().toString();
 		}
 		return saida;
-	}
-	
+	}	
 }

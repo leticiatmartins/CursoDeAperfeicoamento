@@ -1,14 +1,12 @@
 package negocio;
 
-public class Professor {
-	private String nome;
+public class Professor extends Pessoa {
 	private double valorHoraAula;
-	private Telefone tel;
 	
 	public Professor(String n, double v, Telefone t) {
 		nome = n;
 		valorHoraAula = v;
-		tel = t;
+		numTel = t;
 	}
 	
 		public String toString() {
@@ -34,11 +32,11 @@ public class Professor {
 	}
 
 	public Telefone getTel() {
-		return tel;
+		return numTel;
 	}
 
 	public void setTel(Telefone tel) {
-		this.tel = tel;
+		this.numTel = tel;
 	}
 
 	

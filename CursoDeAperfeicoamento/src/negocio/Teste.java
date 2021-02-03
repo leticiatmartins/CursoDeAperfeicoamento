@@ -38,7 +38,6 @@ public class Teste {
 		System.out.println(t.toString());
 		System.out.println(c.consultarAlunosMatriculados());
 		System.out.println(aux.toString());
-		
 	}
 
 }
