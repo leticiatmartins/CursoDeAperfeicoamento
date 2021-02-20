@@ -1,4 +1,4 @@
-package negocio;
+package modelo;
 
 import java.util.Date;
 
@@ -19,6 +19,8 @@ public class Matricula {
 		turma = t;
 	}
 
+	
+//Esse método faz mais sentido na camada de controle
 	public void matricular() {
 		int qtd;
 		Curso c = this.getCurso();

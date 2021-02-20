@@ -1,18 +1,24 @@
-package negocio;
+package modelo;
 
 public class Professor extends Pessoa {
 	private double valorHoraAula;
 	
-	public Professor(String n, double v, Telefone t) {
-		nome = n;
+	public Professor(){
+		super();
+	}
+	
+	public Professor(String n, double v, Telefone t, int id, int CPF) {
+		this.nome = n;
 		valorHoraAula = v;
-		numTel = t;
+		this.numTel = t;
+		this.CPF = CPF;
+		this.numID = id;
+				
 	}
 	
 		public String toString() {
 		return "Nome d@ professor@: " + nome + ", valor da hora/aula: R$" + valorHoraAula;
 	}
-
 
 
 	public String getNome() {

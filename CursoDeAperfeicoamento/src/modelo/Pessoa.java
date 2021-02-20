@@ -1,10 +1,14 @@
-package negocio;
+package modelo;
 
 public abstract class Pessoa {
 	protected String nome;
 	protected int numID;
 	protected int CPF; 
 	protected Telefone numTel;
+	
+	public Pessoa() {
+		super();
+	}
 
 	public String getNome() {
 		return nome;

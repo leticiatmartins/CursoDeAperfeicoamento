@@ -1,4 +1,4 @@
-package negocio;
+package modelo;
 
 public class Telefone {
 	
@@ -15,16 +15,9 @@ public class Telefone {
 		
 	}
 	
-	
-
-
-	@Override
 	public String toString() {
 		return "Telefone: (" + DDD + ") " + numero;
 	}
-
-
-
 
 	public int getDDD() {
 		return DDD;

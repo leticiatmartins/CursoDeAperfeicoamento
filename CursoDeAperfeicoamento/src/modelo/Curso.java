@@ -1,4 +1,4 @@
-package negocio;
+package modelo;
 
 import java.util.*;
 
@@ -16,31 +16,30 @@ public class Curso {
 	private Matricula[] alunosMatriculados = new Matricula[40];
 	private int numAlunos = 0;
 	
-	public Curso(String n, String cont, double val, int total) {
-		nome = n;
-		conteudoProg = cont;
-		valor = val;
-		numAlunos = total;
+	public Curso() {
+		super();
 	}
 	
-	public String toString() {
-		return "Nome do curso: " + nome + ", valor do Curso:" + valor;
+	public Curso(String n, Date di, Date dt, int hi, int ht, int ch, 
+			String cont, Professor p, double val, int total) {
+		nome = n;
+		dtInicio = di;
+		dtTermino = dt;
+		horaInicio = hi;
+		horaTermino = ht;
+		cargaHoraria = ch;
+		conteudoProg = cont;
+		prof = p;
+		valor = val;
+		numAlunos = total;
 	}
 
 	public Matricula[] getMatriculas() {
 		return this.alunosMatriculados;
 	}
 	
-	public void setArrayAlunosMatriculados(Matricula[] a) {
+	public void setMatriculas(Matricula[] a) {
 		this.alunosMatriculados = a;
-	}
-
-	public Aluno getAluno(int i) {
-		return alunosMatriculados[i].getAluno();
-	}
-
-	public void setAluno(Matricula alunoMat, int i) {
-		this.alunosMatriculados[i] = alunoMat;
 	}
 
 	public int getNumAlunos() {
@@ -122,6 +121,21 @@ public class Curso {
 
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+	
+	public String toString() {
+		return "Nome do curso: " + nome + ", valor do Curso:" + valor;
+	}
+	
+	
+	//Faz mais sentido na camada de controle
+	
+	public Aluno getAluno(int i) {
+		return alunosMatriculados[i].getAluno();
+	}
+
+	public void setAluno(Matricula alunoMat, int i) {
+		this.alunosMatriculados[i] = alunoMat;
 	}
 	
 	public String consultarAlunosMatriculados() {
