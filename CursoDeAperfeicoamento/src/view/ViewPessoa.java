@@ -9,26 +9,28 @@ import controle.*;
 public class ViewPessoa implements ActionListener, ListSelectionListener {		
 	private JFrame janela;
 	private JLabel titulo;
-	private JButton cadastro;
-	private JButton botaoSalvarAluno;
-	private JButton botaoSalvarProf;
-	private JFrame detalhe;
-	private ControleDados dados;
-	private JList<String> listaAlunosCadastrados;
-	private JList<String> listaProfsCadastrados;
-	private String[] novoDado = new String[7];
-	private int tipo;
-	
-	public void mostrarDados(ControleDados d, int i){
+	private JButton cadastroAluno;
+	private JButton refreshAluno;
+	private JButton cadastroProf;
+	private JButton refreshProf;
+	private static ControleDados dados;
+	protected JList<String> listaAlunosCadastrados;
+	protected JList<String> listaProfsCadastrados;
+	private int opcao; // armazena se estamos lindando com aluno (01) ou prof (02). 
+	private String[] listaNomes = new String[50];
+
+	public void mostrarDados(ControleDados d, int op){
 		dados = d;
-		tipo = i;
-		
-		switch (i) {
-		case 1:
-			listaAlunosCadastrados = new JList<String>(new ControleAluno(dados).getNomeAluno());
+		opcao = op;
+
+		switch (op) {
+		case 1:// Mostrar dados de alunos cadastrados (JList)
+			listaNomes = new ControleAluno(dados).getNomeAluno();
+			listaAlunosCadastrados = new JList<String>(listaNomes);
 			janela = new JFrame("Alunos");
 			titulo = new JLabel("Alunos Cadastrados");
-			cadastro = new JButton("Cadastrar Novo Aluno");
+			cadastroAluno = new JButton("Cadastrar");
+			refreshAluno = new JButton("Refresh");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 20));
 			titulo.setBounds(90, 10, 250, 30);
@@ -37,27 +39,32 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 			listaAlunosCadastrados.setVisibleRowCount(10);
 
 
-			cadastro.setBounds(90, 177, 200, 30);
+			cadastroAluno.setBounds(70, 177, 100, 30);
+			refreshAluno.setBounds(200, 177, 100, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
 			janela.add(listaAlunosCadastrados);
-			janela.add(cadastro);
+			janela.add(cadastroAluno);
+			janela.add(refreshAluno);
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
-			cadastro.addActionListener(this);
+			cadastroAluno.addActionListener(this);
+			refreshAluno.addActionListener(this);
 			listaAlunosCadastrados.addListSelectionListener(this);
-			
+
 			break;
 
-		case 2:
-			listaProfsCadastrados = new JList<String>(new ControleProfessor(dados).getNomeProf());
+		case 2:// Mostrar dados de professores cadastrados (JList)
+			listaNomes = new ControleProfessor(dados).getNomeProf();
+			listaProfsCadastrados = new JList<String>(listaNomes);
 			janela = new JFrame("Professores");
 			titulo = new JLabel("Professores Cadastrados");
-			cadastro = new JButton("Cadastrar Novo Professor");
+			cadastroProf = new JButton("Cadastrar");
+			refreshProf = new JButton("Refresh");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 20));
 			titulo.setBounds(90, 10, 250, 30);
@@ -66,18 +73,21 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 			listaProfsCadastrados.setVisibleRowCount(10);
 
 
-			cadastro.setBounds(90, 177, 200, 30);
+			cadastroProf.setBounds(70, 177, 100, 30);
+			refreshProf.setBounds(200, 177, 100, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
 			janela.add(listaProfsCadastrados);
-			janela.add(cadastro);
+			janela.add(cadastroProf);
+			janela.add(refreshProf);
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
-			cadastro.addActionListener(this);
+			cadastroProf.addActionListener(this);
+			refreshProf.addActionListener(this);
 			listaProfsCadastrados.addListSelectionListener(this);
 			break;
 
@@ -88,154 +98,47 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 
 	}
 
-	private void mostrarDetalhesAluno(int i) {
-
-		ControleAluno alunos = new ControleAluno(dados);
-
-		this.detalhe = new JFrame("Detalhe de Aluno");
-
-		JLabel labelNome = new JLabel("Nome do aluno: ");
-		JTextField valorNome = new JTextField(alunos.getNome(i), 200);
-		JLabel labelEnd = new JLabel("Endereco: ");
-		JTextField valorEnd = new JTextField(alunos.getEndereco(i),200);
-		JLabel labelCPF = new JLabel("CPF: ");
-		JTextField valorCPF = new JTextField(alunos.getCPF(i), 200);
-		JLabel labelID = new JLabel("Numero da Identidade: ");
-		JTextField valorID = new JTextField(alunos.getID(i), 200);
-		JLabel labelTelefone = new JLabel("Telefone");
-		JTextField valorDDD = new JTextField(
-				String.valueOf(alunos.getTelefone(i).getDDD()), 3);
-		JTextField valorTelefone = new JTextField(
-				String.valueOf(alunos.getTelefone(i).getNumero()), 10);
-		JButton exclusao = new JButton("Excluir Aluno");
-		botaoSalvarAluno = new JButton("Salvar Edição");
 
 
-		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(180, 20, 180, 25);
-		labelEnd.setBounds(30, 50, 150, 25);
-		valorEnd.setBounds(180, 50, 180, 25);
-		labelCPF.setBounds(30, 80, 150, 25);
-		valorCPF.setBounds(180, 80, 180, 25);
-		labelID.setBounds(30, 110, 150, 25);
-		valorID.setBounds(180, 110, 180, 25);
-		labelTelefone.setBounds(30, 140, 150, 25);
-		valorDDD.setBounds(180, 140, 28, 25);
-		valorTelefone.setBounds(210, 140, 65, 25);
-		botaoSalvarAluno.setBounds(120, 175, 115, 30);
-		exclusao.setBounds(245, 175, 115, 30);
-
-		this.detalhe.add(labelNome);
-		this.detalhe.add(valorNome);
-		this.detalhe.add(labelEnd);
-		this.detalhe.add(valorEnd);
-		this.detalhe.add(labelCPF);
-		this.detalhe.add(valorCPF);
-		this.detalhe.add(labelID);
-		this.detalhe.add(valorID);
-		this.detalhe.add(labelTelefone);
-		this.detalhe.add(valorDDD);
-		this.detalhe.add(valorTelefone);
-		this.detalhe.add(exclusao);
-		this.detalhe.add(botaoSalvarAluno);
-		this.detalhe.setLayout(null);
-		this.detalhe.setSize(400, 250);
-		this.detalhe.setVisible(true);
-
-		botaoSalvarAluno.addActionListener(this);
-		novoDado[0] = Integer.toString(i);
-		novoDado[1] =  valorNome.getText();
-		novoDado[2] =  valorEnd.getText();
-		novoDado[3] =  valorCPF.getText();
-		novoDado[4] =  valorID.getText();
-		novoDado[5] =  valorDDD.getText();
-		novoDado[6] =  valorTelefone.getText();
-	}
-	
-	
-	private void mostrarDetalhesProfessor(int i) {
-
-		ControleProfessor professores = new ControleProfessor(dados);
-
-		this.detalhe = new JFrame("Detalhe de Professor");
-
-		JLabel labelNome = new JLabel("Nome do aluno: ");
-		JTextField valorNome = new JTextField(professores.getNome(i), 200);
-		JLabel labelHoraAula = new JLabel("Valor Hora/Aula (R$): ");
-		JTextField valorHoraAula = new JTextField(String.valueOf(professores.getValorHoraAula(i)),200);
-		JLabel labelCPF = new JLabel("CPF: ");
-		JTextField valorCPF = new JTextField(professores.getCPF(i), 200);
-		JLabel labelID = new JLabel("Numero da Identidade: ");
-		JTextField valorID = new JTextField(professores.getID(i), 200);
-		JLabel labelTelefone = new JLabel("Telefone");
-		JTextField valorDDD = new JTextField(
-				String.valueOf(professores.getNumTel(i).getDDD()), 3);
-		JTextField valorTelefone = new JTextField(
-				String.valueOf(professores.getNumTel(i).getNumero()), 10);
-		JButton exclusao = new JButton("Excluir Professor");
-		botaoSalvarProf = new JButton("Salvar Edição");
-
-
-		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(180, 20, 180, 25);
-		labelHoraAula.setBounds(30, 50, 150, 25);
-		valorHoraAula.setBounds(180, 50, 180, 25);
-		labelCPF.setBounds(30, 80, 150, 25);
-		valorCPF.setBounds(180, 80, 180, 25);
-		labelID.setBounds(30, 110, 150, 25);
-		valorID.setBounds(180, 110, 180, 25);
-		labelTelefone.setBounds(30, 140, 150, 25);
-		valorDDD.setBounds(180, 140, 28, 25);
-		valorTelefone.setBounds(210, 140, 65, 25);
-		botaoSalvarProf.setBounds(120, 175, 115, 30);
-		exclusao.setBounds(245, 175, 115, 30);
-
-		this.detalhe.add(labelNome);
-		this.detalhe.add(valorNome);
-		this.detalhe.add(labelHoraAula);
-		this.detalhe.add(valorHoraAula);
-		this.detalhe.add(labelCPF);
-		this.detalhe.add(valorCPF);
-		this.detalhe.add(labelID);
-		this.detalhe.add(valorID);
-		this.detalhe.add(labelTelefone);
-		this.detalhe.add(valorDDD);
-		this.detalhe.add(valorTelefone);
-		this.detalhe.add(exclusao);
-		this.detalhe.add(botaoSalvarProf);
-		this.detalhe.setLayout(null);
-		this.detalhe.setSize(400, 250);
-		this.detalhe.setVisible(true);
-
-		botaoSalvarProf.addActionListener(this);
-		novoDado[0] = Integer.toString(i);
-		novoDado[1] =  valorNome.getText();
-		novoDado[2] =  valorHoraAula.getText();
-		novoDado[3] =  valorCPF.getText();
-		novoDado[4] =  valorID.getText();
-		novoDado[5] =  valorDDD.getText();
-		novoDado[6] =  valorTelefone.getText();
-	}
-
+	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		if(src == cadastro)
-			new ViewCadastro().inserir(tipo, dados);
 		
+		//Cadastro de novo aluno
+		if(src == cadastroAluno)
+			new ViewCRUDPessoa().inserirEditar(1, dados, this, 0);
+
+		//Cadastro de novo professor
+		if(src == cadastroProf)
+			new ViewCRUDPessoa().inserirEditar(2, dados, this, 0);
+
+		// Atualiza a lista de nomes de alunos mostrada no JList
+		if(src == refreshAluno) {
+			listaAlunosCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
+			listaAlunosCadastrados.updateUI();
+		}
+
+		// Atualiza a lista de nomes de professores mostrada no JList
+		if(src == refreshProf) {
+			listaProfsCadastrados.setListData(new ControleProfessor(dados).getNomeProf());
+			listaProfsCadastrados.updateUI();
+		}
+
 	}
 
+	//Captura eventos relacionados ao JList
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		
-		if(src == listaAlunosCadastrados)
-			mostrarDetalhesAluno(listaAlunosCadastrados.getSelectedIndex());
-		
-		if(src == listaProfsCadastrados)
-			mostrarDetalhesProfessor(listaProfsCadastrados.getSelectedIndex());
+
+		if(e.getValueIsAdjusting() && src == listaAlunosCadastrados) {
+			new ViewCRUDPessoa().inserirEditar(3, dados, this, 
+					listaAlunosCadastrados.getSelectedIndex());
+		}
+
+		if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
+			new ViewCRUDPessoa().inserirEditar(4, dados, this, 
+					listaProfsCadastrados.getSelectedIndex());
+		}
 	}
 
 }
-
-
-
-

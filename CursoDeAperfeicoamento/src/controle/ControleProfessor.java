@@ -19,25 +19,6 @@ public class ControleProfessor {
 
 		return s;
 	}
-
-	public boolean inserirProfessor(String[] dados) {
-		int indice = Integer.parseInt(dados[0]);
-		if(dados[3].matches("[a-zA-Z]") || dados[4].matches("[a-zA-Z]") || 
-				dados[5].matches("[a-zA-Z]") || dados[6].matches("[a-zA-Z]")) {
-			return false;
-		} else {
-			p[indice].setNome(dados[1]);
-			p[indice].setValorHoraAula(Double.parseDouble(dados[2]));
-			p[indice].setCPF(Integer.parseInt(dados[3]));
-			p[indice].setNumID(Integer.parseInt(dados[4]));
-			p[indice].setNumTel(new Telefone(Integer.parseInt(dados[5]), 
-					Integer.parseInt(dados[6])));
-
-			if(indice == qtdProfs) qtdProfs++;	
-			return true;
-		}
-	}
-
 	public int getQtd() {
 		return qtdProfs;
 	}

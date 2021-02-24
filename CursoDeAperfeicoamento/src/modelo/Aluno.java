@@ -10,7 +10,7 @@ public class Aluno extends Pessoa {
 		super();
 	}
 	
-	public Aluno(String n, String e, Date dt, int id, int CPF, Telefone tel) {
+	public Aluno(String n, String e, Date dt, int CPF, int id, Telefone tel) {
 		nome = n;
 		endereco = e;
 		dataNasc = dt;
@@ -19,6 +19,14 @@ public class Aluno extends Pessoa {
 		this.numTel = tel;
 	}
 	
+	
+	public Aluno(String n, String e, int id, int CPF, Telefone tel) {
+		nome = n;
+		endereco = e;
+		this.CPF = CPF;
+		this.numID = id;
+		this.numTel = tel;
+	}
 
 	public String toString() {	
 		return "Nome do aluno: " + nome;

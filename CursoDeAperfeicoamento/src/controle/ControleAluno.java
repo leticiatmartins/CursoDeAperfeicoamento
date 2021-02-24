@@ -6,8 +6,9 @@ public class ControleAluno {
 	private int qtdAlunos;
 	
 	public ControleAluno(ControleDados d) {
-		this.a = d.getAlunos();
-		this.qtdAlunos = d.getQtdAlunos();
+		a = d.getAlunos();
+		qtdAlunos = d.getQtdAlunos();
+		
 	}
 	
 	public String[] getNomeAluno() {
@@ -17,26 +18,6 @@ public class ControleAluno {
 		}
 		
 		return s;
-	}
-	
-	public boolean inserirAluno(String[] dadosAlunos) {
-		int indice = Integer.parseInt(dadosAlunos[0]);
-		if(!dadosAlunos[3].matches("[0-9]+") || !dadosAlunos[4].matches("[0-9]+") || 
-				!dadosAlunos[5].matches("[0-9]+") || !dadosAlunos[6].matches("[0-9]+")) {
-			return false;
-		} else {
-			if(indice == qtdAlunos) {
-				a[indice] = new Aluno();
-				qtdAlunos++;
-			}
-				a[indice].setNome(dadosAlunos[1]);
-				a[indice].setEndereco(dadosAlunos[2]);
-				a[indice].setCPF(Integer.parseInt(dadosAlunos[3]));
-				a[indice].setNumID(Integer.parseInt(dadosAlunos[4]));
-				a[indice].setNumTel(new Telefone(Integer.parseInt(dadosAlunos[5]),
-						Integer.parseInt(dadosAlunos[6]))); 	
-			return true;
-		}
 	}
 	
 	public int getQtd() {
@@ -72,7 +53,6 @@ public class ControleAluno {
 	
 	public String getEndereco(int i) {		
 		return a[i].getEndereco();
-	}
-	
+	}	
 	
 }

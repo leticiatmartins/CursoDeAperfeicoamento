@@ -12,7 +12,7 @@ public class ViewMenu implements ActionListener {
 	private static JButton aluno = new JButton("Aluno");
 	private static JButton curso = new JButton("Curso");
 	private static JButton prof = new JButton("Professor");
-	private ControleDados dados = new ControleDados();
+	public static ControleDados dados = new ControleDados();
 	
 	public ViewMenu() {
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -38,6 +38,7 @@ public class ViewMenu implements ActionListener {
 		
 		aluno.addActionListener(menu);
 		prof.addActionListener(menu);
+		curso.addActionListener(menu);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -48,5 +49,10 @@ public class ViewMenu implements ActionListener {
 		
 		if(src == prof)
 			new ViewPessoa().mostrarDados(dados, 2);
+		
+		if(src == curso)
+			JOptionPane.showMessageDialog(null, "Implementar funcionalidades"
+					+ " relacionadas a curso", null, 
+					JOptionPane.INFORMATION_MESSAGE);
 	}
 }

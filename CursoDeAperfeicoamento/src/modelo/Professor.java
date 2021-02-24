@@ -7,7 +7,7 @@ public class Professor extends Pessoa {
 		super();
 	}
 	
-	public Professor(String n, double v, Telefone t, int id, int CPF) {
+	public Professor(String n, double v, int CPF, int id, Telefone t) {
 		this.nome = n;
 		valorHoraAula = v;
 		this.numTel = t;
