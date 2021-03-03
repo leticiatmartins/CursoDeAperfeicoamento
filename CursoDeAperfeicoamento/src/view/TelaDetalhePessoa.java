@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import controle.*;
 
-public class ViewCRUDPessoa implements ActionListener {
+public class TelaDetalhePessoa implements ActionListener {
 
 	private JFrame cadastro;
 	private JLabel labelNome = new JLabel("Nome: ");
@@ -35,7 +35,7 @@ public class ViewCRUDPessoa implements ActionListener {
 	private String s;
 
 	public void inserirEditar(int op, ControleDados d, 
-			ViewPessoa p, int pos) {
+			TelaPessoa p, int pos) {
 
 		opcao = op;
 		posicao = pos;

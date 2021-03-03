@@ -6,7 +6,7 @@ import javax.swing.event.*;
 import controle.*;
 
 
-public class ViewPessoa implements ActionListener, ListSelectionListener {		
+public class TelaPessoa implements ActionListener, ListSelectionListener {		
 	private JFrame janela;
 	private JLabel titulo;
 	private JButton cadastroAluno;
@@ -14,14 +14,12 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 	private JButton cadastroProf;
 	private JButton refreshProf;
 	private static ControleDados dados;
-	protected JList<String> listaAlunosCadastrados;
-	protected JList<String> listaProfsCadastrados;
-	private int opcao; // armazena se estamos lindando com aluno (01) ou prof (02). 
+	private JList<String> listaAlunosCadastrados;
+	private JList<String> listaProfsCadastrados;
 	private String[] listaNomes = new String[50];
 
 	public void mostrarDados(ControleDados d, int op){
 		dados = d;
-		opcao = op;
 
 		switch (op) {
 		case 1:// Mostrar dados de alunos cadastrados (JList)
@@ -37,7 +35,6 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 			listaAlunosCadastrados.setBounds(20, 50, 350, 120);
 			listaAlunosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			listaAlunosCadastrados.setVisibleRowCount(10);
-
 
 			cadastroAluno.setBounds(70, 177, 100, 30);
 			refreshAluno.setBounds(200, 177, 100, 30);
@@ -106,11 +103,11 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo aluno
 		if(src == cadastroAluno)
-			new ViewCRUDPessoa().inserirEditar(1, dados, this, 0);
+			new TelaDetalhePessoa().inserirEditar(1, dados, this, 0);
 
 		//Cadastro de novo professor
 		if(src == cadastroProf)
-			new ViewCRUDPessoa().inserirEditar(2, dados, this, 0);
+			new TelaDetalhePessoa().inserirEditar(2, dados, this, 0);
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == refreshAluno) {
@@ -131,12 +128,12 @@ public class ViewPessoa implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaAlunosCadastrados) {
-			new ViewCRUDPessoa().inserirEditar(3, dados, this, 
+			new TelaDetalhePessoa().inserirEditar(3, dados, this, 
 					listaAlunosCadastrados.getSelectedIndex());
 		}
 
 		if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
-			new ViewCRUDPessoa().inserirEditar(4, dados, this, 
+			new TelaDetalhePessoa().inserirEditar(4, dados, this, 
 					listaProfsCadastrados.getSelectedIndex());
 		}
 	}

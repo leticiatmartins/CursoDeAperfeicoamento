@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import controle.*;
 
-public class ViewMenu implements ActionListener {
+public class TelaMenu implements ActionListener {
 	
 	private static JFrame janela = new JFrame("Controle de Curso");
 	private static JLabel titulo = new JLabel("Menu Principal");
@@ -14,7 +14,7 @@ public class ViewMenu implements ActionListener {
 	private static JButton prof = new JButton("Professor");
 	public static ControleDados dados = new ControleDados();
 	
-	public ViewMenu() {
+	public TelaMenu() {
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(120, 10, 150, 30);
 		curso.setBounds(140, 100, 100, 30);
@@ -34,7 +34,7 @@ public class ViewMenu implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		ViewMenu menu = new ViewMenu();
+		TelaMenu menu = new TelaMenu();
 		
 		aluno.addActionListener(menu);
 		prof.addActionListener(menu);
@@ -45,14 +45,15 @@ public class ViewMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == aluno)
-			new ViewPessoa().mostrarDados(dados, 1);
+			new TelaPessoa().mostrarDados(dados, 1);
 		
 		if(src == prof)
-			new ViewPessoa().mostrarDados(dados, 2);
+			new TelaPessoa().mostrarDados(dados, 2);
 		
 		if(src == curso)
-			JOptionPane.showMessageDialog(null, "Implementar funcionalidades"
-					+ " relacionadas a curso", null, 
+			JOptionPane.showMessageDialog(null, 
+					"Ainda precisam ser implementadas as funcionalidades\n"
+					+ "relacionadas a curso e a matrícula", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 	}
 }
