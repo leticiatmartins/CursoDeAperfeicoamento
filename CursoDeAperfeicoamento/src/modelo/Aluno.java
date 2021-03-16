@@ -10,6 +10,7 @@ public class Aluno extends Pessoa {
 		super();
 	}
 	
+	//Sobrecarga
 	public Aluno(String n, String e, Date dt, int CPF, int id, Telefone tel) {
 		nome = n;
 		endereco = e;

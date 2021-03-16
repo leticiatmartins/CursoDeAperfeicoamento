@@ -12,7 +12,7 @@ import controle.*;
 
 public class TelaDetalhePessoa implements ActionListener {
 
-	private JFrame cadastro;
+	private JFrame janela;
 	private JLabel labelNome = new JLabel("Nome: ");
 	private JTextField valorNome;
 	private JLabel labelHoraAula = new JLabel("Valor Hora/Aula (R$): ");
@@ -46,7 +46,7 @@ public class TelaDetalhePessoa implements ActionListener {
 		if (op == 3) s = "Detalhe de Aluno";
 		if (op == 4) s = "Detalhe de Professor";
 
-		cadastro = new JFrame(s);
+		janela = new JFrame(s);
 
 		//Preenche dados com dados do aluno clicado
 		if (op == 3) {
@@ -99,40 +99,40 @@ public class TelaDetalhePessoa implements ActionListener {
 
 		//Coloca os campos relacionados a endereco se aluno
 		if (op == 1 || op == 3 ) {
-			this.cadastro.add(labelEnd);
-			this.cadastro.add(valorEnd);
+			this.janela.add(labelEnd);
+			this.janela.add(valorEnd);
 
 		}
 
 		//Coloca campos relacionados a valor hora/aula se professor
 		if (op == 2 || op == 4) {
 
-			this.cadastro.add(labelHoraAula);
-			this.cadastro.add(valorHoraAula);
+			this.janela.add(labelHoraAula);
+			this.janela.add(valorHoraAula);
 		}
 
 		//Coloca botoes de excluir e salvar
 		if (op == 3 || op == 4) {
 			botaoSalvar.setBounds(120, 175, 115, 30);
 			botaoExcluir.setBounds(245, 175, 115, 30);
-			this.cadastro.add(botaoExcluir);
+			this.janela.add(botaoExcluir);
 		}
 
-		this.cadastro.add(labelNome);
-		this.cadastro.add(valorNome);
-		this.cadastro.add(labelCPF);
-		this.cadastro.add(valorCPF);
-		this.cadastro.add(labelID);
-		this.cadastro.add(valorID);
-		this.cadastro.add(labelTelefone);
-		this.cadastro.add(valorDDD);
-		this.cadastro.add(valorTelefone);
-		this.cadastro.add(botaoSalvar);
+		this.janela.add(labelNome);
+		this.janela.add(valorNome);
+		this.janela.add(labelCPF);
+		this.janela.add(valorCPF);
+		this.janela.add(labelID);
+		this.janela.add(valorID);
+		this.janela.add(labelTelefone);
+		this.janela.add(valorDDD);
+		this.janela.add(valorTelefone);
+		this.janela.add(botaoSalvar);
 
-		this.cadastro.setLayout(null);
+		this.janela.setLayout(null);
 
-		this.cadastro.setSize(400, 250);
-		this.cadastro.setVisible(true);
+		this.janela.setSize(400, 250);
+		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
@@ -200,13 +200,13 @@ public class TelaDetalhePessoa implements ActionListener {
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
-		cadastro.dispose();
+		janela.dispose();
 	}
 
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
-		cadastro.dispose();
+		janela.dispose();
 	}
 
 	public void mensagemErroCadastro() {
