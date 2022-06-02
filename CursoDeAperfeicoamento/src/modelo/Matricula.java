@@ -20,7 +20,7 @@ public class Matricula {
 	}
 
 	
-//Esse método faz mais sentido na camada de controle
+//Esse metodo faz mais sentido na camada de controle
 	public void matricular() {
 		int qtd;
 		Curso c = this.getCurso();
@@ -79,7 +79,7 @@ public class Matricula {
 		this.turma = turma;
 	}
 
-	@Override
+
 	public String toString() {
 		return "Matricula do aluno " + aluno + ", o valorPago foi de R$ " + valorPago + 
 				" referente ao curso " + curso.getNome();
